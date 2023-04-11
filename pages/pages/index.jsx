@@ -34,11 +34,13 @@ export default function PageListTemplate({ menuItems, pages }) {
 }
 
 export async function getServerSideProps({ res }) {
+	console.log("pages headers---------");
 	const { menuItems, menuItemHeaders } = await getFooterMenu();
 	const { pages, headers: pageHeaders } = await getLatestPages(100);
 
 	const headers = [menuItemHeaders, pageHeaders];
 	setOutgoingHeaders({ headers, res });
+	console.log(headers);
 
 	return {
 		props: {
