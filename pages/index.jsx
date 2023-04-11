@@ -50,13 +50,13 @@ export default function Home({ menuItems, posts }) {
 }
 
 export async function getServerSideProps({ res }) {
+	console.log("---------headers------------");
+	console.log(res.headers);
 	const { menuItems, menuItemHeaders } = await getFooterMenu();
 	const { posts, headers: postHeaders } = await getLatestPosts(12);
 
 	const headers = [menuItemHeaders, postHeaders];
 	setOutgoingHeaders({ headers, res });
-	console.log("---------headers------------");
-	console.log(res.headers);
 
 	return {
 		props: {
